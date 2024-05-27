@@ -31,16 +31,17 @@ export class FetchApiDataService {
     return body || {};
   }
 
+  // API call for user signup endpoint
   public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
-    return this.http.post(apiUrl + '/users', userDetails).pipe(
+    console.log(userDetails.Username + ' created an account!');
+    return this.http.post(apiUrl + '/signup', userDetails).pipe(
       catchError(this.handleError)
     );
   }
 
   // API call for user login endpoint
   public userLogin(userDetails: any): Observable<any> {
-    console.log(userDetails);
+    console.log(userDetails.Username + ' signed in!')
     return this.http.post(apiUrl + '/login', userDetails).pipe(
       catchError(this.handleError)
     );
