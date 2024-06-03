@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+</head>
+
+<body>
+  <div class="profile">
+    <div> <button mat-raised-button (click)="goToMovies()" class="backButton" style="
+      background-color: #e73a1cb9; margin-left: 20px;">
+        <mat-icon>arrow_back</mat-icon>
+      </button></div>
+    <h1>
+      {{this.user.Username}}
+    </h1>
+    <h3>{{this.user.Email}} | {{this.birthday | date: 'MMM dd, yyyy'}}</h3>
+    <div style="text-align: center;">
+      <button mat-raised-button (click)="openUpdateDialog()" class="updateButton" style="
+      background-color: #8fbc8f80;">
+        need to update something?
+      </button>
+    </div>
+    <div style="display: flex;">
+      <mat-card class="movieCard" *ngFor="let movie of movies;" style="flex: 1;">
+        <mat-card-header class="cardHeader">
+          <mat-card-title class="movieTitle">{{movie.Title}}
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{movie.Director.Name}} • {{movie.Released}}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <img src={{movie.ImagePath}} alt={{movie.Title}} style="width: 300px; height: 450px;" />
+        <button (click)="toggleFavorite(movie)" class="favoritedMovie">
+          <mat-icon *ngIf="!isFavorite(movie._id)" class="favoritedHeartOutline">favorite_border</mat-icon>
+          <mat-icon *ngIf="isFavorite(movie._id)" class="favoritedHeart">favorite</mat-icon>
+        </button>
+      </mat-card>
+    </div>
+  </div>
+</body>
+
+</html>
