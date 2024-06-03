@@ -4,22 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>ghibliFlix</title>
 </head>
 
 <body>
   <div class="main-page">
-    <h1>
-      Welcome to myFlix!
-    </h1>
-    <!-- Adding the click event on the signup/login buttons -->
-    <button mat-raised-button (click)="openUserRegistrationDialog()" style="margin-right: 10px;" color="primary"
-      class="userButton">
-      Sign Up
-    </button>
-    <button mat-raised-button (click)="openUserLoginDialog()" color="primary" class="userButton">
-      Login
-    </button>
+    <router-outlet></router-outlet>
   </div>
 </body>
 
