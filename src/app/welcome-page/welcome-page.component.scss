@@ -1,0 +1,29 @@
+$primary: rgba(143, 188, 143, 0.5);
+$card-bg: rgba(143, 188, 143, 0.2);
+$body-bg: Ghostwhite;
+
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
+* {
+  text-align: center;
+  background-color: $body-bg;
+}
+
+body {
+  padding-top: 70px;
+}
+
+h1 {
+  font-variant: all-small-caps;
+  font-family: "Dosis", sans-serif;
+  font-size: 50px;
+}
+
+.userButton {
+  color: #000;
+  font-size: 16px;
+  font-variant: all-small-caps;
+  font-family: "Dosis", sans-serif;
+  font-size: 20px;
+  padding-bottom: 3px;
+}
