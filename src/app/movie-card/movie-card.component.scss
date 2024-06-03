@@ -1,0 +1,40 @@
+$primary: rgba(143, 188, 143, 0.5);
+$card-bg: rgba(143, 188, 143, 0.2);
+$body-bg: Ghostwhite;
+
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
+body {
+  background-color: $body-bg;
+}
+
+h1 {
+  font-size: 50px;
+  position: fixed;
+  text-align: center;
+  padding: 50px 0px 0px 45%;
+  font-family: "Dosis", sans-serif;
+}
+
+.movieCard {
+  background-color: $card-bg;
+  text-align: center;
+  align-items: center;
+  margin-left: 20px;
+  margin-top: 200px;
+}
+
+.cardHeader {
+  padding-bottom: 10px;
+}
+
+.movieTitle {
+  font-variant: all-small-caps;
+  text-align: center;
+}
+
+.buttonLink {
+  font-variant: all-small-caps;
+  font-size: 17px;
+  border-radius: 10px;
+}
