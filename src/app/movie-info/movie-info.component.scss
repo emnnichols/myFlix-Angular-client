@@ -1,0 +1,10 @@
+$primary: rgba(143, 188, 143, 0.5);
+$card-bg: rgba(143, 188, 143, 0.2);
+$body-bg: Ghostwhite;
+
+.infoCard {
+  text-align: center;
+  align-items: center;
+  padding: 30px;
+  background-color: $card-bg;
+}

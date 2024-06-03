@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{data.movie.Title}}</title>
+</head>
+
+<body>
+  <mat-card class="infoCard">
+    <mat-card-header>
+      <mat-card-subtitle>
+        <h3>{{data.movie.Featured ? 'Feature' :
+          'Non-Feature'}} {{data.movie.Genre.Name}} Film</h3>
+      </mat-card-subtitle>
+      <mat-card-title>
+        <h1>
+          {{data.movie.Title}}
+        </h1>
+      </mat-card-title>
+      <mat-card-subtitle style="padding-bottom: 20px;">
+        <h2>Directed by {{data.movie.Director.Name}} • Released in {{data.movie.Released}}</h2>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content style="margin-bottom: 20px; letter-spacing: 1px; line-height: 25px;">
+      {{data.movie.Description}}
+    </mat-card-content>
+  </mat-card>
+</body>
+
+</html>
