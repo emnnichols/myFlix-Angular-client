@@ -1,0 +1,49 @@
+$primary: rgba(143, 188, 143, 0.5);
+$navBar: rgba(143, 188, 143, 0.2);
+$body-bg: Ghostwhite;
+
+body {
+  background-color: $body-bg;
+}
+
+.updateUser {
+  align-self: center;
+  font-variant: all-small-caps;
+  padding-bottom: 10px;
+}
+
+.userForm {
+  text-align: center;
+}
+
+.updateField {
+  letter-spacing: 1px;
+  opacity: 0.7;
+  width: 80%;
+}
+
+.updateField:focus-within {
+  font-style: normal;
+}
+
+.updateButton {
+  width: 100%;
+  background-color: $primary;
+  color: #000;
+  font-size: 16px;
+  font-variant: all-small-caps;
+}
+
+.deleteButton {
+  width: 100%;
+  background-color: rgba(202, 10, 10, 0.785);
+  color: #fff;
+  font-size: 16px;
+  font-variant: all-small-caps;
+}
+
+.deleteButton:hover {
+  background-color: rgba(182, 26, 26, 0.785);
+  color: #fff;
+  transition: all 0.4s;
+}

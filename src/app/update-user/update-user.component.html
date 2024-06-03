@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update User</title>
+</head>
+
+<body>
+  <mat-card>
+    <mat-card-header class="updateUser">
+      <mat-card-title>update your info!</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="userForm">
+        <mat-form-field class="updateField">
+          <mat-label class="formLabel">Username</mat-label>
+          <input matInput [(ngModel)]="userInput.Username" type="text" placeholder="{{this.user.Username}}"
+            name="Username">
+        </mat-form-field>
+        <mat-form-field class="updateField">
+          <mat-label class="formLabel">Email</mat-label>
+          <input matInput [(ngModel)]="userInput.Email" type="email" placeholder="{{this.user.Email}}" name="Email">
+        </mat-form-field>
+        <mat-form-field class="updateField">
+          <mat-label class="formLabel">Birthday</mat-label>
+          <input matInput [(ngModel)]="userInput.Birthday" type="date" placeholder="{{this.user.Birthday}}"
+            name="Birthday">
+        </mat-form-field>
+        <mat-form-field class="updateField">
+          <mat-label class="formLabel">Password</mat-label>
+          <input matInput [(ngModel)]="userInput.Password" type="password" placeholder="******" name="Password"
+            required>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="userInput.Password ? updateUser() : snackBar.open('password required!', 'OK', {
+        duration: 2000
+      })" class="updateButton">
+        Update your information!
+      </button>
+    </mat-card-actions>
+    <mat-card-actions>
+      <button mat-raised-button (click)="openDeleteDialog()" class="deleteButton">
+        Want to delete instead?
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</body>
+
+</html>
