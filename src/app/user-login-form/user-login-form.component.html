@@ -1,35 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Login</title>
-</head>
-
-<body>
-  <mat-card>
-    <mat-card-header class="loginUser">
-      <mat-card-title>login to ghibliflix!</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form class="loginForm">
-        <mat-form-field class="loginField">
-          <input matInput [(ngModel)]="userData.Username" type="text" placeholder="Username" name="Username"
-            class="loginInput" required>
-        </mat-form-field>
-        <mat-form-field class="loginField">
-          <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password" name="Password"
-            required>
-        </mat-form-field>
-      </form>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button (click)="loginUser()" color="primary" class="loginButton">
-        Login
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</body>
-
-</html>
+<mat-card style="text-align: center;">
+  <mat-card-header class="loginUser">
+    <mat-card-title>login to ghibliflix!</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="loginForm">
+      <mat-form-field class="loginField">
+        <input matInput [(ngModel)]="userData.Username" type="text" placeholder="Username" name="Username"
+          class="loginInput" required>
+      </mat-form-field>
+      <mat-form-field class="loginField">
+        <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password" name="Password" required>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="loginUser()" color="primary" class="loginButton">
+      Login
+    </button>
+  </mat-card-actions>
+</mat-card>

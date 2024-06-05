@@ -1,39 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update User</title>
-</head>
-
-<body>
-  <mat-card>
-    <mat-card-header class="deleteUser">
-      <mat-card-title>are you sure?</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form class="deleteConfirm">
-        <mat-form-field class="confirmField">
-          <mat-label class="formLabel">Username</mat-label>
-          <input matInput [(ngModel)]="userInput.Username" type="text" placeholder="{{this.user.Username}}"
-            name="Username" required>
-        </mat-form-field>
-        <mat-form-field class="confirmField">
-          <mat-label class="formLabel">Password</mat-label>
-          <input matInput [(ngModel)]="userInput.Password" type="password" placeholder="******" name="Password"
-            required>
-        </mat-form-field>
-      </form>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button (click)="userInput.Password ? deleteUser() : snackBar.open('password required!', 'OK', {
-        duration: 2000
-      })" class="deleteButton">
-        Delete account
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</body>
-
-</html>
+<mat-card>
+  <mat-card-header class="deleteUser">
+    <mat-card-title>are you sure?</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="deleteConfirm">
+      <mat-form-field class="confirmField">
+        <mat-label class="formLabel">Username</mat-label>
+        <input matInput [(ngModel)]="userInput.Username" type="text" placeholder="{{this.user.Username}}"
+          name="Username" required>
+      </mat-form-field>
+      <mat-form-field class="confirmField">
+        <mat-label class="formLabel">Password</mat-label>
+        <input matInput [(ngModel)]="userInput.Password" type="password" placeholder="******" name="Password" required>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="userInput.Password ? deleteUser() : snackBar.open('password required!', 'OK', {
+      duration: 2000
+    })" class="deleteButton">
+      Delete account
+    </button>
+  </mat-card-actions>
+</mat-card>
