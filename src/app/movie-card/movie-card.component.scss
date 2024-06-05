@@ -8,12 +8,14 @@ body {
   background-color: $body-bg;
 }
 
-h1 {
-  font-size: 50px;
+.title {
+  display: flexbox;
+  background-color: $body-bg;
   position: fixed;
   text-align: center;
-  padding: 50px 0px 0px 45%;
-  font-family: "Dosis", sans-serif;
+  width: 100%;
+  margin-bottom: 50px;
+  z-index: 1;
 }
 
 .movieCard {
@@ -21,7 +23,8 @@ h1 {
   text-align: center;
   align-items: center;
   margin-left: 20px;
-  margin-top: 200px;
+  margin-top: 20px;
+  border-radius: 20px;
 }
 
 .cardHeader {

@@ -2,6 +2,10 @@ $primary: rgba(143, 188, 143, 0.5);
 $navBar: rgba(143, 188, 143, 0.2);
 $body-bg: Ghostwhite;
 
+body {
+  background-color: $body-bg;
+}
+
 .registerUser {
   align-self: center;
   font-variant: all-small-caps;
@@ -16,12 +20,6 @@ $body-bg: Ghostwhite;
 
 .registerField:focus-within {
   font-style: normal;
-}
-
-input::placeholder {
-  font-style: italic;
-  font-variant: all-small-caps;
-  letter-spacing: 1px;
 }
 
 .registerButton {
