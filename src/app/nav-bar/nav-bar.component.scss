@@ -1,0 +1,48 @@
+$primary: rgba(143, 188, 143, 0.5);
+$card-bg: rgba(143, 188, 143, 0.2);
+$body-bg: Ghostwhite;
+
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
+.navBar {
+  width: 100%;
+  text-align: center;
+  padding: 30px 20px 18px 20px;
+  margin: 0px -20px;
+  border-bottom: 2px solid $primary;
+  background-color: $body-bg;
+}
+
+.navButton {
+  color: black;
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+.homeButton {
+  font-variant: all-small-caps;
+  font-size: 50px;
+  font-family: 'Dosis', sans-serif;
+  padding: 0px 20px 10px 20px;
+}
+
+.homeButton:hover {
+  background-color: $body-bg;
+}
+
+.hoverText {
+  display: none;
+}
+
+.profile:hover {
+  margin-left: -26px;
+}
+
+.logout:hover {
+  margin-right: -25px;
+}
+
+.navButton:hover .hoverText {
+  display: inline;
+}

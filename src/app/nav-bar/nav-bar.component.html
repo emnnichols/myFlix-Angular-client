@@ -1,0 +1,16 @@
+<mat-toolbar style="background-color: ghostwhite; 
+position: fixed;">
+  <div class="navBar">
+    <button mat-button (click)="openProfile()" class="navButton profile">
+      <span class="hoverText" style="font-variant: all-small-caps;">profile</span>
+      <mat-icon aria-label="Profile">person</mat-icon>
+    </button>
+    <button mat-button (click)="goHome()" class="homeButton" aria-label="Home">
+      ghibliFlix
+    </button>
+    <button mat-button (click)="userLogout()" class="navButton logout">
+      <span class="hoverText" style="font-variant: all-small-caps;">logout</span>
+      <mat-icon aria-label="Logout">logout</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
