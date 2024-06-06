@@ -10,7 +10,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   templateUrl: './delete-user.component.html',
   styleUrl: './delete-user.component.scss'
 })
-export class DeleteUserComponent {
+export class DeleteUserComponent implements OnInit {
   user = JSON.parse(localStorage['user']);
 
   @Input() userInput = { Username: '', Password: '' };
@@ -29,13 +29,13 @@ export class DeleteUserComponent {
   deleteUser(): void {
     if (this.userInput.Username === this.user.Username) {
       this.fetchApiData.deleteUser(this.user.Username).subscribe((result) => {
-        if (result == 'was deleted') {
-          console.log(result + ' from deleteUser');
+        if (result.includes('was deleted')) {
           this.dialogRef.close(); // close modal on success
           this.snackBar.open('account deleted!', 'OK', {
             duration: 2000
           });
           this.router.navigate(['welcome']);
+          localStorage.clear();
         }
       }, (result) => {
         this.snackBar.open(result, 'OK', {
