@@ -3,7 +3,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 
+// Material modules
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
@@ -12,9 +15,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { FormsModule } from '@angular/forms';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { AppRoutingModule } from './app-routing.module';
+// Components
 import { AppComponent } from './app.component';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
@@ -26,6 +29,7 @@ import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -46,7 +50,8 @@ const appRoutes: Routes = [
     MovieInfoComponent,
     UserProfileComponent,
     UpdateUserComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    NavBarComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -61,7 +66,8 @@ const appRoutes: Routes = [
     MatCardModule,
     MatButtonModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }],
   bootstrap: [AppComponent]
