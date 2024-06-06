@@ -30,6 +30,7 @@ export class UserProfileComponent implements OnInit {
     public breakpoints: AppComponent,
     private responsive: BreakpointObserver,
     private router: Router) {
+    // Track screen size changes
     this.responsive.observe(
       [Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape])
       .subscribe((result: BreakpointState) => this.setStyle())
@@ -44,6 +45,7 @@ export class UserProfileComponent implements OnInit {
     this.birthday.setDate(this.birthday.getDate() + 1);
   }
 
+  // Gets the current breakpoint style from AppComponent
   setStyle(): any {
     console.log(this.breakpoints.breakpointStyle)
     this.style = this.breakpoints.breakpointStyle;

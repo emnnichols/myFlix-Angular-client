@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
-import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,14 +17,17 @@ export class NavBarComponent implements OnInit {
 
   }
 
+  // Routes user back to the main Movies page
   goHome(): void {
     this.router.navigate(['movies']);
   }
 
+  // Routes user to their profile
   openProfile(): any {
     this.router.navigate(['profile']);
   }
 
+  // Clears localStorage and routes user back to Welcome component
   userLogout(): any {
     this.router.navigate(['welcome']);
     localStorage.clear();

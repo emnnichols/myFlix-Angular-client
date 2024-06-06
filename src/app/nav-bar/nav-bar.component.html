@@ -1,13 +1,17 @@
+<!-- NAV BAR -->
 <mat-toolbar style="background-color: ghostwhite; 
 position: fixed;">
   <div class="navBar">
+    <!-- PROFILE BUTTON -->
     <button mat-button (click)="openProfile()" class="navButton profile">
       <span class="hoverText" style="font-variant: all-small-caps;">profile</span>
       <mat-icon aria-label="Profile">person</mat-icon>
     </button>
+    <!-- HOME BUTTON / APP TITLE -->
     <button mat-button (click)="goHome()" class="homeButton" aria-label="Home">
       ghibliFlix
     </button>
+    <!-- LOGOUT BUTTON -->
     <button mat-button (click)="userLogout()" class="navButton logout">
       <span class="hoverText" style="font-variant: all-small-caps;">logout</span>
       <mat-icon aria-label="Logout">logout</mat-icon>

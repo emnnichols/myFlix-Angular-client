@@ -10,6 +10,8 @@ export class MovieInfoComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
 
+
+    // Synopsis data injected from Movie Card component
     public data: {
       movie: any
     }) { }

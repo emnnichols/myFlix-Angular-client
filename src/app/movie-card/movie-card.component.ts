@@ -40,11 +40,13 @@ export class MovieCardComponent implements OnInit {
     this.getFavoriteMovies();
   }
 
+  // Gets the current breakpoint style from AppComponent
   setStyle(): any {
     console.log(this.breakpoints.breakpointStyle)
     this.style = this.breakpoints.breakpointStyle;
   }
 
+  // Get movies from API
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -53,6 +55,7 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  // Open movie information dialog boxes + pass on data
   openGenreInfo(name: string, description: string): void {
     this.dialog.open(GenreInfoComponent, {
       data: {
@@ -84,6 +87,7 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  // Gets current users favorite movies
   getFavoriteMovies(): void {
     let username = JSON.parse(localStorage['user']).Username;
     this.fetchApiData.getFavMovies(username).subscribe((resp: any) => {
@@ -93,6 +97,7 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  // Checks movies for favorites
   isFavorite(movie: any): any {
     if (this.favoriteMovies.includes(movie)) {
       return this.isFav = true;
@@ -101,6 +106,7 @@ export class MovieCardComponent implements OnInit {
     };
   }
 
+  // Calls either addFavorite or removeFavorites depending on isFavorite
   toggleFavorite(movie: any): void {
     this.isFavorite(movie._id)
       ? this.removeFavorite(movie._id)

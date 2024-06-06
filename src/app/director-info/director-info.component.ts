@@ -11,6 +11,7 @@ export class DirectorInfoComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
 
+    // Director data injected from Movie Card component
     public data: {
       Name: string,
       Bio: string,

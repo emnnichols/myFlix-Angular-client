@@ -25,6 +25,8 @@ export class UpdateUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Dialog box to update user information
+  // Username, email, birthday fields are auto-filled with stored info if left empty
   updateUser(): void {
     let userData = {
       Username: this.userInput.Username === '' ? this.user.Username : this.userInput.Username,
@@ -46,9 +48,11 @@ export class UpdateUserComponent implements OnInit {
     });
   }
 
+  // Opens confirmation dialog box before deletion
   openDeleteDialog(): void {
     this.dialog.open(DeleteUserComponent, {
       width: '450px'
     });
+    this.dialogRef.close(); // closes update dialog box
   }
 }

@@ -16,9 +16,11 @@ export class AppComponent implements OnInit {
     public responsive: BreakpointObserver) { }
 
   ngOnInit(): void {
+    // OBSERVE BREAKPOINT STATUS
     this.responsive.observe([Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape]).subscribe(result => {
       const breakpoints = result.breakpoints;
 
+      // Styles for small portrait screen sizes
       if (breakpoints[Breakpoints.HandsetPortrait]) {
         let breakpointCard = { 'display': 'block', 'width': '100%', 'margin-left': '-10px', 'margin-top': '100px' };
         let breakpointProfileCard = { 'display': 'block', 'width': '100%', 'margin-left': '-10px', 'margin-top': '160px' };
@@ -28,6 +30,7 @@ export class AppComponent implements OnInit {
 
         return this.breakpointStyle = { card: breakpointCard, profile: breakpointProfileCard, header: breakpointHeader, info: breakpointUserInfo, user: breakpointUsername }
       }
+      // Styles for small landscape screen sizes
       else if (breakpoints[Breakpoints.HandsetLandscape]) {
         let breakpointCard = { 'display': 'grid', 'grid-template-columns': '1fr 1fr 1fr', 'width': '90%', 'margin-left': '-20px', 'margin-top': '100px' };
         let breakpointProfileCard = { 'display': 'grid', 'grid-template-columns': '1fr 1fr 1fr', 'width': '90%', 'margin-left': '-20px', 'margin-top': '160px' };
@@ -37,6 +40,8 @@ export class AppComponent implements OnInit {
 
         return this.breakpointStyle = { card: breakpointCard, profile: breakpointProfileCard, header: breakpointHeader, info: breakpointUserInfo, user: breakpointUsername }
       }
+
+      // Styles for medium portrait screen sizes
       else if (breakpoints[Breakpoints.TabletPortrait]) {
         let breakpointCard = { 'display': 'grid', 'grid-template-columns': '1fr 1fr', 'width': '98%', 'margin-top': '100px' };
         let breakpointProfileCard = { 'display': 'grid', 'grid-template-columns': '1fr 1fr', 'width': '98%', 'margin-top': '180px' };
@@ -46,6 +51,8 @@ export class AppComponent implements OnInit {
 
         return this.breakpointStyle = { card: breakpointCard, profile: breakpointProfileCard, header: breakpointHeader, info: breakpointUserInfo, user: breakpointUsername }
       }
+
+      // Styles for medium landscape screen sizes
       else if (breakpoints[Breakpoints.TabletLandscape]) {
         let breakpointCard = { 'display': 'grid', 'grid-template-columns': '1fr 1fr 1fr', 'width': '98%', 'margin-top': '100px' };
         let breakpointProfileCard = { 'display': 'grid', 'grid-template-columns': '1fr 1fr 1fr', 'width': '98%', 'margin-top': '190px' };
@@ -55,6 +62,8 @@ export class AppComponent implements OnInit {
 
         return this.breakpointStyle = { card: breakpointCard, profile: breakpointProfileCard, header: breakpointHeader, info: breakpointUserInfo, user: breakpointUsername }
       }
+
+      // Default styling
       else {
         let breakpointCard = { 'display': 'flex', 'width': '100%', 'margin-top': '100px' };
         let breakpointProfileCard = { 'display': 'flex', 'width': '100%', 'margin-top': '190px' };

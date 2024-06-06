@@ -1,9 +1,9 @@
 <app-nav-bar [ngStyle]="this.style.header" style="position: relative;z-index: 9;"></app-nav-bar>
 <div>
-  <!-- Profile Header *** includes username, edit button, user email/birthday -->
+  <!-- PROFILE HEADER *** includes username, edit button, user email/birthday -->
   <div [ngStyle]="this.style.profile.display != 'flex' ? {'position': 'relative'} : {'position': 'fixed'}"
     class="profileUser">
-    <!-- Username and edit button -->
+    <!-- USERNAME + EDIT USER INFO BUTTON -->
     <h1 [ngStyle]="this.style.user" style="margin-bottom: 2%;">
       {{this.user.Username}}
       <button mat-button (click)="openUpdateDialog()" class="editButton" aria-label="Edit Profile">
@@ -11,7 +11,7 @@
         <span class="editText" style="font-variant: all-small-caps;">edit</span>
       </button>
     </h1>
-    <!-- User email and birthday -->
+    <!-- RENDERS CURRENT USERS EMAIL + BIRTHDAY -->
     <h3 [ngStyle]="this.style.info" style="font-size: 19px; line-height: 25px;">
       {{this.user.Email}} |
       {{this.birthday

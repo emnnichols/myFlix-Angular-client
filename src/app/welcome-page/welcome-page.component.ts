@@ -23,6 +23,7 @@ export class WelcomePageComponent implements OnInit {
     });
   }
 
+  // Function to open dialog when login button is clicked
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: '380px'

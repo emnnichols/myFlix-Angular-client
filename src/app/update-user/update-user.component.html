@@ -3,6 +3,8 @@
     <mat-card-title>update your info!</mat-card-title>
   </mat-card-header>
   <mat-card-content>
+
+    <!-- USER FORM TO UPDATE INFO -->
     <form class="userForm">
       <mat-form-field class="updateField">
         <mat-label class="formLabel">Username</mat-label>
@@ -18,12 +20,16 @@
         <input matInput [(ngModel)]="userInput.Birthday" type="date" placeholder="{{this.user.Birthday}}"
           name="Birthday">
       </mat-form-field>
+
+      <!-- PASSWORD REQUIRED TO UPDATE INFO -->
       <mat-form-field class="updateField">
         <mat-label class="formLabel">Password</mat-label>
         <input matInput [(ngModel)]="userInput.Password" type="password" placeholder="******" name="Password" required>
       </mat-form-field>
     </form>
   </mat-card-content>
+
+  <!-- UPDATE BUTTON + BUTTON FOR DELETE DIALOG BOX -->
   <mat-card-actions>
     <button mat-raised-button (click)="userInput.Password ? updateUser() : snackBar.open('password required!', 'OK', {
       duration: 2000

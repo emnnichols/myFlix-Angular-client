@@ -1,6 +1,11 @@
+<!-- NAV BAR -->
 <app-nav-bar [ngStyle]="this.style.header" style="position: relative;z-index: 9;"></app-nav-bar>
+
+<!-- MOVIE CARD -->
 <div style="padding-bottom: 20px;" [ngStyle]="this.style.card">
   <mat-card class="movieCard" *ngFor="let movie of movies;" style="flex: 1 0 auto;">
+
+    <!-- CARD HEADER -- Includes movie title, director, release date -->
     <mat-card-header class="cardHeader">
       <mat-card-title class="movieTitle">{{movie.Title}}
       </mat-card-title>
@@ -8,11 +13,17 @@
         {{movie.Director.Name}} • {{movie.Released}}
       </mat-card-subtitle>
     </mat-card-header>
+
+    <!-- MOVIE POSTER -->
     <img src={{movie.ImagePath}} alt={{movie.Title}} style="width: 300px; height: 450px;" />
+
+    <!-- FAVORITE STATUS / TOGGLE BUTTON -->
     <button (click)="toggleFavorite(movie)" class="favoritedMovie">
       <mat-icon *ngIf="!isFavorite(movie._id)" class="favoritedHeartOutline">favorite_border</mat-icon>
       <mat-icon *ngIf="isFavorite(movie._id)" class="favoritedHeart">favorite</mat-icon>
     </button>
+
+    <!-- DIALOG BOX BUTTONS -->
     <mat-card-actions>
       <button mat-button (click)="openGenreInfo(movie.Genre.Name, movie.Genre.Description)"
         class="buttonLink">Genre</button>

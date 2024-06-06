@@ -2,6 +2,9 @@
   <mat-card-header class="deleteUser">
     <mat-card-title>are you sure?</mat-card-title>
   </mat-card-header>
+
+  <!-- DELETE USER FORM
+    Requires user to input username and password to confirm -->
   <mat-card-content>
     <form class="deleteConfirm">
       <mat-form-field class="confirmField">
@@ -15,6 +18,8 @@
       </mat-form-field>
     </form>
   </mat-card-content>
+
+  <!-- DELETE USER BUTTON -->
   <mat-card-actions>
     <button mat-raised-button (click)="userInput.Password ? deleteUser() : snackBar.open('password required!', 'OK', {
       duration: 2000

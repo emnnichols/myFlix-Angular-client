@@ -10,9 +10,12 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   templateUrl: './delete-user.component.html',
   styleUrl: './delete-user.component.scss'
 })
+
 export class DeleteUserComponent implements OnInit {
+  // Gets user info from localStorage
   user = JSON.parse(localStorage['user']);
 
+  // Input from delete user form
   @Input() userInput = { Username: '', Password: '' };
 
   constructor(
@@ -26,6 +29,8 @@ export class DeleteUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Delete user API call
+  // Username inputed must match username stored in localStorage
   deleteUser(): void {
     if (this.userInput.Username === this.user.Username) {
       this.fetchApiData.deleteUser(this.user.Username).subscribe((result) => {
@@ -34,6 +39,7 @@ export class DeleteUserComponent implements OnInit {
           this.snackBar.open('account deleted!', 'OK', {
             duration: 2000
           });
+          // Reroutes user to Welome component upon account deletion
           this.router.navigate(['welcome']);
           localStorage.clear();
         }

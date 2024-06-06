@@ -11,6 +11,8 @@ export class GenreInfoComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
 
+
+    // Genre data injected from Movie Card component
     public data: {
       Name: string,
       Description: string
