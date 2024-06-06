@@ -4,12 +4,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { UpdateUserComponent } from '../update-user/update-user.component';
+import { AppComponent } from '../app.component';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'
 })
+
 export class UserProfileComponent implements OnInit {
 
   user: any = {};
@@ -18,19 +21,32 @@ export class UserProfileComponent implements OnInit {
   movies: any[] = [];
   favoriteMovies: any[] = [];
   isFav: boolean = false;
+  style: any = '';
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
-    private router: Router) { }
+    public breakpoints: AppComponent,
+    private responsive: BreakpointObserver,
+    private router: Router) {
+    this.responsive.observe(
+      [Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape])
+      .subscribe((result: BreakpointState) => this.setStyle())
+  }
 
   ngOnInit(): void {
+    this.setStyle();
     this.getProfile();
     this.getFavoriteMovies();
     // Renders accurate birthday when using Date pipe
     this.birthday = new Date(this.birthday);
     this.birthday.setDate(this.birthday.getDate() + 1);
+  }
+
+  setStyle(): any {
+    console.log(this.breakpoints.breakpointStyle)
+    this.style = this.breakpoints.breakpointStyle;
   }
 
   // returns current user information

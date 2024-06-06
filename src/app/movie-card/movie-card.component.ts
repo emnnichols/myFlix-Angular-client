@@ -1,9 +1,11 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
+import { AppComponent } from '../app.component';
 import { GenreInfoComponent } from '../genre-info/genre-info.component';
 import { DirectorInfoComponent } from '../director-info/director-info.component';
 import { MovieInfoComponent } from '../movie-info/movie-info.component';
@@ -18,20 +20,29 @@ export class MovieCardComponent implements OnInit {
   user: any = {};
   favoriteMovies: any[] = [];
   isFav: boolean = false;
+  style: any = '';
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
-    private router: Router) { }
+    public breakpoints: AppComponent,
+    private responsive: BreakpointObserver,
+    private router: Router) {
+    this.responsive.observe(
+      [Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape])
+      .subscribe((result: BreakpointState) => this.setStyle())
+  }
 
   ngOnInit(): void {
+    this.setStyle();
     this.getMovies();
     this.getFavoriteMovies();
   }
 
-  openProfile(): any {
-    this.router.navigate(['profile']);
+  setStyle(): any {
+    console.log(this.breakpoints.breakpointStyle)
+    this.style = this.breakpoints.breakpointStyle;
   }
 
   getMovies(): void {
