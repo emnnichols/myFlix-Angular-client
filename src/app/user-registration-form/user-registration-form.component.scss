@@ -2,6 +2,9 @@ $primary: rgba(143, 188, 143, 0.5);
 $navBar: rgba(143, 188, 143, 0.2);
 $body-bg: Ghostwhite;
 
+
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
 body {
   background-color: $body-bg;
 }
@@ -20,6 +23,17 @@ body {
 
 .registerField:focus-within {
   font-style: normal;
+}
+
+.requirements {
+  margin: -15px 35px 5px 35px;
+  padding: 0px 5px;
+  font-size: 12px;
+  font-family: 'Dosis';
+  background-color: rgba(143, 188, 143, 0.09);
+  text-align: left;
+  font-style: italic;
+  border-radius: 20px;
 }
 
 .registerButton {
