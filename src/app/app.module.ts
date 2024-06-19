@@ -37,7 +37,9 @@ const appRoutes: Routes = [
   { path: 'profile', component: UserProfileComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' }
 ];
-
+/**
+ * Root module of the application
+ */
 @NgModule({
   declarations: [
     AppComponent,

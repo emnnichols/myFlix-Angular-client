@@ -1,3 +1,7 @@
+/**
+ * @module Navigation Bar
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -9,25 +13,35 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
+  /**
+   * Creates new instance of the navigation bar
+   * @param snackBar - Shows result to user
+   * @param router - Routes user to appropriate page, depending on button clicked
+   */
   constructor(
     public snackBar: MatSnackBar,
     private router: Router) { }
 
   ngOnInit(): void {
-
   }
 
-  // Routes user back to the main Movies page
+  /**
+   * Navigates back to the main Movies page.
+   */
   goHome(): void {
     this.router.navigate(['movies']);
   }
 
-  // Routes user to their profile
+  /**
+   * Navigates to the user's profile view.
+   */
   openProfile(): any {
     this.router.navigate(['profile']);
   }
 
-  // Clears localStorage and routes user back to Welcome component
+  /**
+   * Navigates back to the WelcomePageComponent and clears the user data and token from localStorage.
+   */
   userLogout(): any {
     this.router.navigate(['welcome']);
     localStorage.clear();

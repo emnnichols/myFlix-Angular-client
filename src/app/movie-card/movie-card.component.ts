@@ -1,8 +1,11 @@
+/**
+ * @module Movie Card
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
-import { Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
 import { AppComponent } from '../app.component';
@@ -22,31 +25,48 @@ export class MovieCardComponent implements OnInit {
   isFav: boolean = false;
   style: any = '';
 
+  /**
+   * Initializes new instance of the MoveCardComponent
+   * @param fetchApiData - Use API data service
+   * @param snackBar - Shows result to user
+   * @param dialog - Open corresponding dialog boxes
+   * @param breakpoints - Use established breakpoints
+   * @param responsive - Makes page responsive
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
     public breakpoints: AppComponent,
-    private responsive: BreakpointObserver,
-    private router: Router) {
+    private responsive: BreakpointObserver) {
     this.responsive.observe(
       [Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape])
       .subscribe((result: BreakpointState) => this.setStyle())
   }
 
+  /**
+   * On initializion, the style is set by ```breakpointStyle``` passed from {@link AppComponent}, 
+   * movies are fetched from the API, 
+   * and the user's favorite movies are fetched.
+   */
   ngOnInit(): void {
     this.setStyle();
     this.getMovies();
     this.getFavoriteMovies();
   }
 
-  // Gets the current breakpoint style from AppComponent
+  /**
+   * Style is determined by the current ```breakpointStyle``` from {@link AppComponent}
+   */
   setStyle(): any {
     console.log(this.breakpoints.breakpointStyle)
     this.style = this.breakpoints.breakpointStyle;
   }
 
-  // Get movies from API
+  /**
+   * Fetches movies from the myFlix API
+   * @see [API documentation](https://myflix-ghibli-7c8d5913b80b.herokuapp.com/documentation)
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -55,7 +75,12 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  // Open movie information dialog boxes + pass on data
+  /**
+   * Opens {@link GenreInfoComponent | GenreInfo} dialog box and passes on genre data.
+   * @group Methods for  Movie Details
+   * @param name - Genre name
+   * @param description - Genre description
+   */
   openGenreInfo(name: string, description: string): void {
     this.dialog.open(GenreInfoComponent, {
       data: {
@@ -66,6 +91,14 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens {@link DirectorInfoComponent | DirectorInfo} dialog box and passes on director data.
+   * @group Methods for  Movie Details
+   * @param name - Director name
+   * @param bio - Director biography
+   * @param birth - Directors birth date
+   * @param death - Directors death date (if applicable)
+   */
   openDirectorInfo(name: string, bio: string, birth: string, death: string): void {
     this.dialog.open(DirectorInfoComponent, {
       data: {
@@ -78,6 +111,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens {@link MovieInfoComponent | MovieInfo} dialog box and passes on movie data.
+   * @group Methods for  Movie Details
+   * @param info - All movie information
+   */
   openMovieInfo(info: any): void {
     this.dialog.open(MovieInfoComponent, {
       data: {
@@ -87,7 +125,10 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
-  // Gets current users favorite movies
+  /**
+   * Gets current users favorite movies
+   * @group Methods for Favorite Movies
+   */
   getFavoriteMovies(): void {
     let username = JSON.parse(localStorage['user']).Username;
     this.fetchApiData.getFavMovies(username).subscribe((resp: any) => {
@@ -97,7 +138,12 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
-  // Checks movies for favorites
+  /**
+   * Checks movies fetched from API to find the users favorite movies.
+   * @group Methods for Favorite Movies
+   * @param movie - Movie being checked against favoriteMovies
+   * @returns Boolean value depending on if the ```movie``` is found in favoriteMovies.
+   */
   isFavorite(movie: any): any {
     if (this.favoriteMovies.includes(movie)) {
       return this.isFav = true;
@@ -107,12 +153,32 @@ export class MovieCardComponent implements OnInit {
   }
 
   // Calls either addFavorite or removeFavorites depending on isFavorite
+  /**
+   * Called when the Angular Material icon / favorite button 
+   * on a movie card is clicked.
+   * 
+   * If the movie is favorited, {@link addFavorite} is called, 
+   * if the movie is not favorited, {@link removeFavorite} is called.
+   * 
+   * @group Methods for Favorite Movies
+   * @param movie - Movie being checked against favoriteMovies array.
+   */
   toggleFavorite(movie: any): void {
     this.isFavorite(movie._id)
       ? this.removeFavorite(movie._id)
       : this.addFavorite(movie._id)
   }
 
+  /**
+   * If movie is not favorited and {@link toggleFavorite} is called,
+   * this sends the request to the backend to add movie to favorite movies array.
+   * 
+   * On success, the updated user data is set in localStorage
+   *  and {@link getFavoriteMovies} is called again.
+   * 
+   * @group Methods for Favorite Movies
+   * @param movie - Movie for the backend to find and add to list.
+   */
   addFavorite(movie: any): void {
     this.fetchApiData.addFavMovie(this.user.Username, movie).subscribe((response) => {
       localStorage.setItem('user', JSON.stringify(response));
@@ -123,6 +189,16 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  /**
+   * If movie is favorited and {@link toggleFavorite} is called,
+   * this sends the request to the backend to remove movie from favorite movies array.
+   * 
+   * On success, the updated user data is set in localStorage
+   *  and {@link getFavoriteMovies} is called again.
+   * 
+   * @group Methods for Favorite Movies
+   * @param movie - Movie for the backend to find and remove from list.
+   */
   removeFavorite(movie: string): void {
     this.fetchApiData.deleteFavMovie(this.user.Username, movie).subscribe((response) => {
       localStorage.setItem('user', JSON.stringify(response));

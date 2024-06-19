@@ -1,8 +1,14 @@
+/**
+ * @module Fetch API Data
+ */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
+/**
+ * Base API url
+ */
 const apiUrl = 'https://myflix-ghibli-7c8d5913b80b.herokuapp.com';
 
 @Injectable({
@@ -10,6 +16,10 @@ const apiUrl = 'https://myflix-ghibli-7c8d5913b80b.herokuapp.com';
 })
 export class FetchApiDataService {
 
+  /**
+   * @category Constructors
+   * @param http
+   */
   constructor(private http: HttpClient) { }
 
   private handleError(error: HttpErrorResponse): any {
@@ -24,17 +34,31 @@ export class FetchApiDataService {
     }
   }
 
+  /**
+   * Extract token from localStorage.
+   * @returns Token for HttpHeader authorization.
+   */
   private getToken(): string {
     const token = localStorage.getItem('token');
     return token ? token : '';
   }
 
+  /**
+   * Extract data from HTTP responses.
+   * @param res - HTTP response object
+   * @returns Extracted data or empty object.
+   */
   private extractResponseData(res: Object): any {
     const body = res;
     return body || {};
   }
 
-  // API call for user signup endpoint
+  /**
+   * Registers new user.
+   * @category User API Calls
+   * @param userDetails - Details of the user to be created (Username, Password, Email, Birthday)
+   * @returns An observable with registration status.
+   */
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails.Username + ' created an account!');
     return this.http.post(apiUrl + '/signup', userDetails).pipe(
@@ -42,7 +66,12 @@ export class FetchApiDataService {
     );
   }
 
-  // API call for user login endpoint
+  /**
+   * Logs in existing user.
+   * @category User API Calls
+   * @param userDetails - User credentials (Username, Password)
+   * @returns An observable with login attempt status.
+   */
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails.Username + ' signed in!')
     return this.http.post(apiUrl + '/login', userDetails).pipe(
@@ -50,7 +79,11 @@ export class FetchApiDataService {
     );
   }
 
-  // API call to get all movies
+  /**
+   * Retrieve all movies from database.
+   * @category Movie API Calls
+   * @returns An observable with all movies.
+   */
   getAllMovies(): Observable<any> {
     return this.http.get(apiUrl + '/movies', {
       headers: new HttpHeaders(
@@ -63,7 +96,12 @@ export class FetchApiDataService {
     );
   }
 
-  // API call to get a single movie via movie id
+  /**
+   * Retrieve data on a specific movie.
+   * @category Movie API Calls
+   * @param movie - The movie details to retrieve the movie ID
+   * @returns An observable with details about the movie.
+   */
   getSingleMovie(movie: any): Observable<any> {
     return this.http.get(apiUrl + `/movies/` + movie._id, {
       headers: new HttpHeaders(
@@ -75,7 +113,12 @@ export class FetchApiDataService {
       catchError(this.handleError));
   }
 
-  // API call for information on movie director
+  /**
+   * Retrieve data on the movies director.
+   * @category Movie API Calls
+   * @param movie - The movie details to retrieve director name
+   * @returns An observable with the director details (Name, Bio, Birth/Death).
+   */
   getDirector(movie: any): Observable<any> {
     return this.http.get(apiUrl + `/movies/directors/` + movie.Director.Name + `/about`, {
       headers: new HttpHeaders(
@@ -87,7 +130,12 @@ export class FetchApiDataService {
       catchError(this.handleError));
   }
 
-  // API call for information on movie genre
+  /**
+   * Retrieve data on the movies genre.
+   * @category Movie API Calls
+   * @param movie - The movie details to retrieve genre name
+   * @returns An observable with the genre details (Name, Description).
+   */
   getGenre(movie: any): Observable<any> {
     return this.http.get(apiUrl + `/movies/genres/` + movie.Genre.Name + `/about`, {
       headers: new HttpHeaders(
@@ -99,7 +147,12 @@ export class FetchApiDataService {
       catchError(this.handleError));
   }
 
-  // API call to get user info
+  /**
+   * Retrieve user details.
+   * @category User API Calls
+   * @param username - Username of the logged in user
+   * @returns An observable with the user details.
+   */
   getUser(username: any): Observable<any> {
     return this.http.get(apiUrl + '/profile/' + username, {
       headers: new HttpHeaders(
@@ -111,7 +164,13 @@ export class FetchApiDataService {
       catchError(this.handleError));
   }
 
-  // API call to update user info
+  /**
+   * Update user details.
+   * @category User API Calls
+   * @param username - Username of the logged in user
+   * @param userDetails - Object with updated user details
+   * @returns An observable with the updated user details.
+   */
   updateUser(username: string, userDetails: any): Observable<any> {
     return this.http.put(apiUrl + '/profile/' + username + `/account`, userDetails,
       {
@@ -124,7 +183,12 @@ export class FetchApiDataService {
         catchError(this.handleError));
   }
 
-  // API call to delete user
+  /**
+   * Deletes a user.
+   * @category User API Calls
+   * @param username - Username of the logged in user
+   * @returns An observable with the user deletion status
+   */
   deleteUser(username: any): Observable<any> {
     return this.http.delete(apiUrl + `/profile/` + username + `/account`,
       {
@@ -137,7 +201,12 @@ export class FetchApiDataService {
         catchError(this.handleError));
   }
 
-  // API call to get users' favorite movies
+  /**
+   * Retrieve favorite movies the user.
+   * @category User API Calls
+   * @param username - Username of the logged in user
+   * @returns An observable with the users favorite movies.
+   */
   getFavMovies(username: any): Observable<any> {
     return this.http.get(apiUrl + '/profile/' + username,
       {
@@ -150,7 +219,13 @@ export class FetchApiDataService {
         catchError(this.handleError));
   }
 
-  // API call to add movie to favorites
+  /**
+   * Adds movie to users favorite movies.
+   * @category User API Calls
+   * @param username - Username of the logged in user
+   * @param movieID - The ID of the movie
+   * @returns An observable with the users favorite movies.
+   */
   addFavMovie(username: any, movieID: any): Observable<any> {
     return this.http.post(apiUrl + '/profile/' + username + '/movies/' + movieID, null,
       {
@@ -163,7 +238,13 @@ export class FetchApiDataService {
         catchError(this.handleError));
   }
 
-  // API call to delete movie from favorites
+  /**
+   * Deletes movie from users favorite movies.
+   * @category User API Calls
+   * @param username - Username of the logged in user
+   * @param movieID - The ID of the movie
+   * @returns An observable with the users favorite movies.
+   */
   deleteFavMovie(username: any, movieID: any): Observable<any> {
     return this.http.delete(apiUrl + '/profile/' + username + '/movies/' + movieID,
       {

@@ -1,8 +1,12 @@
+/**
+ * @module User Delete
+ */
+
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { WelcomePageComponent } from '../welcome-page/welcome-page.component';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
 @Component({
@@ -12,15 +16,27 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 })
 
 export class DeleteUserComponent implements OnInit {
-  // Gets user info from localStorage
+  /**
+   * Extracts user data from localStorage
+   */
   user = JSON.parse(localStorage['user']);
 
   // Input from delete user form
+  /**
+   * Object that holds user input data 
+   * needed before they can click the delete button
+   */
   @Input() userInput = { Username: '', Password: '' };
 
+  /**
+   * Creates new instance of the DeleteUserComponent dialog box
+   * @param fetchApiData - Use API data service
+   * @param dialogRef - Closes dialog on successful data update
+   * @param snackBar - Shows result to user
+   * @param router - Routes user to WelcomePageComponent on success
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
-    public dialog: MatDialog,
     public dialogRef: MatDialogRef<DeleteUserComponent>,
     public snackBar: MatSnackBar,
     private router: Router
@@ -31,6 +47,14 @@ export class DeleteUserComponent implements OnInit {
 
   // Delete user API call
   // Username inputed must match username stored in localStorage
+  /**
+   * Checks input submitted by user to ensure username matches logged in user.
+   * If they match, delete request is sent to backend.
+   * 
+   * On success, user is notified their account was deleted and is navigated back to the {@link WelcomePageComponent | Welcome Page}.
+   * 
+   * On failure, user is notified the usernames did not match.
+   */
   deleteUser(): void {
     if (this.userInput.Username === this.user.Username) {
       this.fetchApiData.deleteUser(this.user.Username).subscribe((result) => {

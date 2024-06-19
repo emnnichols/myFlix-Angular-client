@@ -1,3 +1,7 @@
+/**
+ * @module User Profile
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,6 +27,16 @@ export class UserProfileComponent implements OnInit {
   isFav: boolean = false;
   style: any = '';
 
+  /**
+   * Creates an instance of the users profile; 
+   * shows some user details, edit button, and favorite movies
+   * @param fetchApiData - Use API data service
+   * @param snackBar - Shows result to user
+   * @param dialog - Open Update User dialog
+   * @param breakpoints - Use established breakpoints
+   * @param responsive - Makes page responsive
+   * @param router - Routes user back to /movies
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -36,6 +50,10 @@ export class UserProfileComponent implements OnInit {
       .subscribe((result: BreakpointState) => this.setStyle())
   }
 
+  /**
+   * Initialize user details and favorite movies
+   * @group Initialized on Loading
+   */
   ngOnInit(): void {
     this.setStyle();
     this.getProfile();
@@ -45,13 +63,19 @@ export class UserProfileComponent implements OnInit {
     this.birthday.setDate(this.birthday.getDate() + 1);
   }
 
-  // Gets the current breakpoint style from AppComponent
+  /**
+   * Sets style based on the current breakpoint from {@link AppComponent}
+   * @group Initialized on Loading
+   */
   setStyle(): any {
     console.log(this.breakpoints.breakpointStyle)
     this.style = this.breakpoints.breakpointStyle;
   }
 
-  // returns current user information
+  /**
+   * Returns current user information
+   * @group Initialized on Loading
+   */
   getProfile(): void {
     this.fetchApiData.getUser(this.username).subscribe((resp: any) => {
       this.user = resp;
@@ -60,19 +84,27 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
-  // Opens dialog box to update user info
+  /**
+   * Opens dialog box where users can update their details
+   */
   openUpdateDialog(): void {
     this.dialog.open(UpdateUserComponent, {
       width: '380px'
     });
   }
 
-  // Button to navigate back to movies pages
+  /**
+   * @ignore
+   * Navigates user back to Movies when Back button is clicked
+   */
   goToMovies(): void {
     this.router.navigate(['movies']);
   }
 
-  // Fetches users favorite movies
+  /**
+   * Fetches users favorite movies
+   * @group Initialized on Loading
+   */
   getFavoriteMovies(): any {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp.filter((movie: any) => this.favoriteMovies.includes(movie._id));
@@ -81,6 +113,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   // Check needed for favorite icon
+  /**
+   * Compares movie to users favorites to determine which 
+   * Angular Material icon to use to reflect favorite status.
+   * @group Initialized on Loading
+   * @param movie 
+   * @returns Boolean value of whether the given movie is found in the user's favorite movies array
+   */
   isFavorite(movie: any): any {
     if (this.favoriteMovies.includes(movie)) {
       return this.isFav = true;
@@ -89,7 +128,10 @@ export class UserProfileComponent implements OnInit {
     };
   }
 
-  // Allows user to remove movie from favorites from profile
+  /**
+   * Allows user to remove movie from their favorites from the profile view
+   * @param movie - Used to get movie ID to pass to {@link isFavorite}
+   */
   toggleFavorite(movie: any): void {
     this.isFavorite(movie._id)
       ? this.removeFavorite(movie._id)
@@ -97,6 +139,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   // Logic for removing favorite from user data
+  /**
+   * Removes movie from favorite movies array and 
+   * resets stored user to reflect change and update profile view
+   * @param movie 
+   */
   removeFavorite(movie: string): void {
     this.fetchApiData.deleteFavMovie(this.user.Username, movie).subscribe((response) => {
       this.getProfile();

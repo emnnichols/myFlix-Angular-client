@@ -1,5 +1,8 @@
+/**
+ * @module App Component
+ */
+
 import { Component, OnInit } from '@angular/core';
-import { Injectable } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
@@ -12,9 +15,32 @@ export class AppComponent implements OnInit {
   title = 'ghibliFlix';
   breakpointStyle: any;
 
+  /**
+   * Initiates BreakpointObserver when app loads
+   * @param responsive - Observe breakpoint changes
+   */
   constructor(
     public responsive: BreakpointObserver) { }
 
+  /**
+   * If a breakpoint change is observed, 
+   * it sets the ```breakpoint``` constant. 
+   * This constant is then used to decide which style object 
+   * ```breakpointStyle``` passes onto responsive components.
+   * 
+   * If no breakpoints are matched, the default styling is passed to ```breakpointStyle```.
+   * 
+   * @remarks Observes changes that match breakpoints of the following sizes:
+   * 
+   * * HandsetPortrait
+   * 
+   * * HandsetLandscape
+   * 
+   * * TabletPortrait
+   *
+   * * TabletLandscape
+   *
+   */
   ngOnInit(): void {
     // OBSERVE BREAKPOINT STATUS
     this.responsive.observe([Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape, Breakpoints.TabletPortrait, Breakpoints.TabletLandscape]).subscribe(result => {

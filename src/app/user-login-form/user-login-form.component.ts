@@ -1,3 +1,7 @@
+/**
+ * @module User Login
+ */
+
 import { Component, OnInit, Input } from '@angular/core';
 // Close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
@@ -13,8 +17,18 @@ import { Router } from '@angular/router';
   styleUrl: './user-login-form.component.scss'
 })
 export class UserLoginFormComponent implements OnInit {
+  /**
+   * Object holding the users credentials
+   */
   @Input() userData = { Username: '', Password: '' };
 
+  /**
+   * Creates an instance of UserLoginComponent
+   * @param fetchApiData - Use API data service
+   * @param dialogRef - Close dialog reference on success
+   * @param snackBar - Shows result to user
+   * @param router - Routes user to /movies on success
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
@@ -24,8 +38,11 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // User Login API call
-  // Responsible for sending form inputs to backend
+  /**
+   * Logs user in by sending input values to myFlix API.
+   * On success, dialog is closed, user and token are stored in localStorage, then navigates to Movies page.
+   * On failure, snackBar shows error message.
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
       this.dialogRef.close(); // close modal on success

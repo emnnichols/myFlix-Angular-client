@@ -1,3 +1,7 @@
+/**
+ * @module Director Info
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -7,11 +11,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrl: './director-info.component.scss'
 })
 export class DirectorInfoComponent implements OnInit {
-
+  /**
+   * Creates new instance of the DirectorInfoComponent
+   * @param data - Director data injected from Movie Card component
+   */
   constructor(
     @Inject(MAT_DIALOG_DATA)
 
-    // Director data injected from Movie Card component
     public data: {
       Name: string,
       Bio: string,

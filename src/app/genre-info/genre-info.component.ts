@@ -1,3 +1,7 @@
+/**
+ * @module Genre Info
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -7,12 +11,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrl: './genre-info.component.scss'
 })
 export class GenreInfoComponent implements OnInit {
-
+  /**
+   * Creates new instance of the GenreInfoComponent
+   * @param data - Genre data injected from Movie Card component
+   */
   constructor(
     @Inject(MAT_DIALOG_DATA)
 
-
-    // Genre data injected from Movie Card component
     public data: {
       Name: string,
       Description: string
