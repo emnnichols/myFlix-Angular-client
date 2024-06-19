@@ -41,7 +41,7 @@ export class FetchApiDataService {
    * @returns Token for HttpHeader authorization.
    */
   private getToken(): string {
-    const token = localStorage.getItem('token');
+    const token = localStorage ? localStorage.getItem('token') : null;
     return token ? token : '';
   }
 

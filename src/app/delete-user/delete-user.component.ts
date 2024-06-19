@@ -19,7 +19,7 @@ export class DeleteUserComponent implements OnInit {
   /**
    * Extracts user data from localStorage
    */
-  user = JSON.parse(localStorage['user']);
+  user = localStorage ? JSON.parse(localStorage['user']) : null;
 
   // Input from delete user form
   /**
@@ -65,7 +65,7 @@ export class DeleteUserComponent implements OnInit {
           });
           // Reroutes user to Welome component upon account deletion
           this.router.navigate(['welcome']);
-          localStorage.clear();
+          localStorage ? localStorage.clear() : null;
         }
       }, (result) => {
         this.snackBar.open(result, 'OK', {

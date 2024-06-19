@@ -20,8 +20,8 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 export class UserProfileComponent implements OnInit {
 
   user: any = {};
-  username = JSON.parse(localStorage['user']).Username;
-  birthday = JSON.parse(localStorage['user']).Birthday;
+  username = localStorage ? JSON.parse(localStorage['user']).Username : null;
+  birthday = localStorage ? JSON.parse(localStorage['user']).Birthday : null;
   movies: any[] = [];
   favoriteMovies: any[] = [];
   isFav: boolean = false;
@@ -147,7 +147,7 @@ export class UserProfileComponent implements OnInit {
   removeFavorite(movie: string): void {
     this.fetchApiData.deleteFavMovie(this.user.Username, movie).subscribe((response) => {
       this.getProfile();
-      localStorage.setItem('user', JSON.stringify(response));
+      localStorage ? localStorage.setItem('user', JSON.stringify(response)) : null;
       this.getFavoriteMovies();
       this.snackBar.open('Removed from favorites!', 'OK', {
         duration: 1000,

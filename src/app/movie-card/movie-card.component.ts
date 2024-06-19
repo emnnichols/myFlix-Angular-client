@@ -130,7 +130,7 @@ export class MovieCardComponent implements OnInit {
    * @group Methods for Favorite Movies
    */
   getFavoriteMovies(): void {
-    let username = JSON.parse(localStorage['user']).Username;
+    let username = localStorage ? JSON.parse(localStorage['user']).Username : null;
     this.fetchApiData.getFavMovies(username).subscribe((resp: any) => {
       this.user = resp;
       this.favoriteMovies = this.user.FavoriteMovies;

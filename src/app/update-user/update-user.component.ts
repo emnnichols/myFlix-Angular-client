@@ -18,7 +18,7 @@ export class UpdateUserComponent implements OnInit {
   /**
    * Extract logged in user from localStorage
    */
-  user = JSON.parse(localStorage['user']);
+  user = localStorage ? JSON.parse(localStorage['user']) : null;
 
   /**
    * Object that holds the updated data input by user
