@@ -19,6 +19,8 @@ export class FetchApiDataService {
   /**
    * @category Constructors
    * @param http
+   * 
+   * @see [API documentation](https://myflix-ghibli-7c8d5913b80b.herokuapp.com/documentation)
    */
   constructor(private http: HttpClient) { }
 
