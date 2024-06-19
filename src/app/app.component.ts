@@ -12,7 +12,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 })
 
 export class AppComponent implements OnInit {
-  title = 'ghibliFlix';
+  title = 'myFlix-client-Angular';
   breakpointStyle: any;
 
   /**
